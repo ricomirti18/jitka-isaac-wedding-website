@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XXX & YYY Wedding</title>
+
+<style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fafafa; }
+    header { background:#333; color:white; padding:20px; text-align:center; }
+    nav { background:#444; display:flex; justify-content:center; flex-wrap:wrap; }
+    nav a { color:white; padding:15px 20px; text-decoration:none; display:block; }
+    nav a:hover { background:#333; }
+    section { padding:30px; display:none; }
+    section.active { display:block; }
+    h1, h2 { margin-top:0; }
+    form { max-width:400px; margin-top:20px; }
+    input, select, textarea { width:100%; padding:10px; margin-top:10px; box-sizing:border-box; }
+    button { padding:10px 20px; margin-top:15px; background:#333; color:white; border:none; cursor:pointer; }
+    button:hover { background:#555; }
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>XXX & YYY</h1>
+    <p>Our Wedding — Prague, Late Summer</p>
+</header>
+
+<nav>
+    <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('schedule')">Schedule</a>
+    <a href="#" onclick="showSection('travel')">Travel</a>
+    <a href="#" onclick="showSection('registry')">Registry</a>
+    <a href="#" onclick="showSection('party')">Wedding Party</a>
+    <a href="#" onclick="showSection('gallery')">Gallery</a>
+    <a href="#" onclick="showSection('todo')">Things To Do</a>
+    <a href="#" onclick="showSection('faqs')">FAQs</a>
+    <a href="#" onclick="showSection('rsvp')">RSVP</a>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+    <h2>Welcome</h2>
+    <p>Welcome to the wedding website of XXX & YYY. We’re so excited to celebrate with you in Prague!</p>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+    <h2>Schedule</h2>
+    <p><strong>Legal Ceremony:</strong> Day Before – Prague City Hall</p>
+    <p><strong>Wedding Day:</strong> Late Summer, Prague</p>
+    <ul>
+        <li>15:00 – Guest Arrival</li>
+        <li>16:00 – Ceremony</li>
+        <li>17:00 – Cocktail Hour</li>
+        <li>19:00 – Dinner & Speeches</li>
+        <li>21:00 – Dancing</li>
+    </ul>
+</section>
+
+<!-- TRAVEL -->
+<section id="travel">
+    <h2>Travel Information</h2>
+    <p>Details about flights, hotels, transportation, and local tips.</p>
+</section>
+
+<!-- REGISTRY -->
+<section id="registry">
+    <h2>Registry</h2>
+    <p>Links to registry sites can go here.</p>
+</section>
+
+<!-- WEDDING PARTY -->
+<section id="party">
+    <h2>Wedding Party</h2>
+    <p>Introduce bridesmaids, groomsmen, friends, family members, etc.</p>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+    <h2>Gallery</h2>
+    <p>You can add photos here later.</p>
+</section>
+
+<!-- THINGS TO DO -->
+<section id="todo">
+    <h2>Things To Do in Prague</h2>
+    <p>Recommendations for sightseeing, restaurants, cafés, etc.</p>
+</section>
+
+<!-- FAQ -->
+<section id="faqs">
+    <h2>Frequently Asked Questions</h2>
+    <p>Put common guest questions here (dress code, transport, etc.).</p>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp">
+    <h2>RSVP</h2>
+    <p>Please let us know if you’ll be joining us!</p>
+
+    <form id="rsvpForm" onsubmit="handleSubmit(event)">
+        <label>Your Full Name</label>
+        <input type="text" id="name" required>
+
+        <label>Will you attend?</label>
+        <select id="attendance" required>
+            <option value="">Select...</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label>Dietary Restrictions (optional)</label>
+        <textarea id="diet"></textarea>
+
+        <button type="submit">Submit RSVP</button>
+    </form>
+
+    <p id="rsvpSuccess" style="color:green; display:none; margin-top:20px;">
+        Thank you! Your RSVP has been submitted.
+    </p>
+</section>
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        const data = {
+            name: document.getElementById("name").value,
+            attendance: document.getElementById("attendance").value,
+            diet: document.getElementById("diet").value
+        };
+
+        console.log("RSVP Received:", data); 
+        // You can connect this to a Google Sheet, database, or email service later
+
+        document.getElementById("rsvpSuccess").style.display = "block";
+        document.getElementById("rsvpForm").reset();
+    }
+</script>
+
+</body>
+</html>
